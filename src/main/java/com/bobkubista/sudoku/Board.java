@@ -7,8 +7,43 @@ public class Board {
 
     private final Cell[][] cells;
 
-    public Board(Cell[][] cells) {
+    private Board(Cell[][] cells) {
         this.cells = cells;
+    }
+
+    public static Board initBoard(int[][] board) {
+        Cell[][] cells = new Cell[9][9];
+        for (int row = 0; row < cells.length; row++) {
+            for (int column = 0; column < cells[0].length; column++) {
+                if (board[row][column] != 0) {
+                    cells[row][column] = new Cell(board[row][column]);
+                } else {
+                    cells[row][column] = new Cell(0);
+                }
+            }
+        }
+        return new Board(cells);
+    }
+
+    public boolean solve() {
+        for (int row = 0; row < getCells().length; row++) {
+            for (int column = 0; column < getCells()[row].length; column++) {
+                if (!getCells()[row][column].isSolved()) {
+                    for (int solution = 1; solution < 10; solution++) {
+                        if (!isValueAlreadyUsed(row, column, solution)) {
+                            getCells()[row][column].setValue(solution);
+                            if (solve()) {
+                                return true;
+                            }
+                        } else {
+                            getCells()[row][column].setValue(0);
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public Cell[][] getCells() {
@@ -61,7 +96,7 @@ public class Board {
 
     @Override
     public String toString() {
-        return "Board [cells=" + cellsArrayToString() + "]";
+        return "Board [cells=\n" + cellsArrayToString() + "]";
     }
 
     private String cellsArrayToString() {

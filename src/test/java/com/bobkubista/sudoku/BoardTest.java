@@ -40,84 +40,64 @@ class BoardTest {
 
     @Test
     void testInRow() {
-        Cell[][] cells = new Cell[9][9];
-        initBoard(cells, singleValueBoard);
-
         // In Row
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(8, 2, 3));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(2, 8, 3));
+        Assertions.assertTrue(Board.initBoard(singleValueBoard).isValueAlreadyUsed(8, 2, 3));
+        Assertions.assertFalse(Board.initBoard(singleValueBoard).isValueAlreadyUsed(2, 8, 3));
     }
 
     @Test
     void testInColumn() {
-        Cell[][] cells = new Cell[9][9];
-        initBoard(cells, singleValueBoard);
-
         // In Column
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(1, 2, 3));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(8, 4, 3));
+        Assertions.assertTrue(Board.initBoard(singleValueBoard).isValueAlreadyUsed(1, 2, 3));
+        Assertions.assertFalse(Board.initBoard(singleValueBoard).isValueAlreadyUsed(8, 4, 3));
     }
 
     @Test
     void testInBlock() {
-        Cell[][] cells = new Cell[9][9];
-        initBoard(cells, singleValueBoard);
-
         // In Column
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(3, 3, 3));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(8, 8, 3));
+        Assertions.assertTrue(Board.initBoard(singleValueBoard).isValueAlreadyUsed(3, 3, 3));
+        Assertions.assertFalse(Board.initBoard(singleValueBoard).isValueAlreadyUsed(8, 8, 3));
     }
 
     @Test
     void testIsValueAlreadyUsed() {
-        Cell[][] cells = new Cell[9][9];
-        initBoard(cells, board);
-
         // In Row
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(0, 0, 8));
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(3, 1, 7));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(0, 0, 9));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(3, 1, 6));
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(2, 0, 2));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(0, 0, 9));
+        Assertions.assertTrue(Board.initBoard(board).isValueAlreadyUsed(0, 0, 8));
+        Assertions.assertTrue(Board.initBoard(board).isValueAlreadyUsed(3, 1, 7));
+        Assertions.assertFalse(Board.initBoard(board).isValueAlreadyUsed(0, 0, 9));
+        Assertions.assertFalse(Board.initBoard(board).isValueAlreadyUsed(3, 1, 6));
+        Assertions.assertTrue(Board.initBoard(board).isValueAlreadyUsed(2, 0, 2));
+        Assertions.assertFalse(Board.initBoard(board).isValueAlreadyUsed(0, 0, 9));
 
         // In Column
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(0, 0, 8));
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(2, 0, 2));
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(6, 2, 1));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(0, 0, 9));
+        Assertions.assertTrue(Board.initBoard(board).isValueAlreadyUsed(0, 0, 8));
+        Assertions.assertTrue(Board.initBoard(board).isValueAlreadyUsed(2, 0, 2));
+        Assertions.assertTrue(Board.initBoard(board).isValueAlreadyUsed(6, 2, 1));
+        Assertions.assertFalse(Board.initBoard(board).isValueAlreadyUsed(0, 0, 9));
 
         // In Block
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(1, 1, 8));
-        Assertions.assertTrue(new Board(cells).isValueAlreadyUsed(5, 5, 4));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(1, 2, 9));
-        Assertions.assertFalse(new Board(cells).isValueAlreadyUsed(5, 5, 2));
+        Assertions.assertTrue(Board.initBoard(board).isValueAlreadyUsed(1, 1, 8));
+        Assertions.assertTrue(Board.initBoard(board).isValueAlreadyUsed(5, 5, 4));
+        Assertions.assertFalse(Board.initBoard(board).isValueAlreadyUsed(1, 2, 9));
+        Assertions.assertFalse(Board.initBoard(board).isValueAlreadyUsed(5, 5, 2));
     }
 
     @Test
     void testIsSolved() {
-        Cell[][] cells = new Cell[9][9];
-        initBoard(cells, solvedBoard);
-        Assertions.assertTrue(new Board(cells).isSolved());
+        Assertions.assertTrue(Board.initBoard(solvedBoard).isSolved());
     }
 
     @Test
     void testToString() {
-        Cell[][] cells = new Cell[2][9];
-        initBoard(cells, board);
-        Assertions.assertEquals("Board [cells=8,0,0,0,0,0,0,0,0\n" +
-                "0,0,3,6,0,0,0,0,0]", new Board(cells).toString());
-    }
-
-    private void initBoard(Cell[][] cells, int[][] board) {
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[0].length; j++) {
-                if (board[i][j] != 0) {
-                    cells[i][j] = new Cell(board[i][j]);
-                } else {
-                    cells[i][j] = new Cell(0);
-                }
-            }
-        }
+        Assertions.assertEquals("Board [cells=\n" +
+                "0,0,0,0,0,0,0,0,0\n" +
+                "0,0,0,0,0,0,0,0,0\n" +
+                "0,0,0,0,0,0,0,0,0\n" +
+                "0,0,3,0,0,0,0,0,0\n" +
+                "0,0,0,0,0,0,0,0,0\n" +
+                "0,0,0,0,0,0,0,0,0\n" +
+                "0,0,0,0,0,0,0,0,0\n" +
+                "0,0,0,0,0,0,0,0,0\n" +
+                "0,0,0,0,0,0,0,0,0]", Board.initBoard(singleValueBoard).toString());
     }
 }
