@@ -5,7 +5,6 @@ public class SudokuSolver {
     public Board solve(int[][] board) {
         Board gameBoard = Board.initBoard(board);
         gameBoard.solve();
-        System.out.println("board: \n" + gameBoard);
         return gameBoard;
     }
 

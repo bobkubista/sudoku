@@ -102,7 +102,7 @@ public class Board {
     private String cellsArrayToString() {
         return Stream.of(cells)
                 .map(row -> Stream.of(row)
-                        .map(cell -> getStringValueForCell(cell))
+                        .map(this::getStringValueForCell)
                         .collect(Collectors.joining(",")))
                 .collect(Collectors.joining("\n"));
     }
