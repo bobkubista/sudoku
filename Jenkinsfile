@@ -20,5 +20,10 @@ pipeline {
                 }
             }
         }
+        stage('Sonar') {
+        	steps {
+        	    sh 'mvn sonar:sonar'
+        	}
+        }
     }
 }
