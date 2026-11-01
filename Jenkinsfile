@@ -15,6 +15,11 @@ pipeline {
               resources:
                 requests: { memory: 768Mi, cpu: 250m }
                 limits: { memory: 1Gi }
+            # explicit sizes for the default jnlp container, see kvm-server ADR-0041
+            - name: jnlp
+              resources:
+                requests: { memory: 256Mi, cpu: 100m }
+                limits: { memory: 512Mi }
       '''
     }
   }
