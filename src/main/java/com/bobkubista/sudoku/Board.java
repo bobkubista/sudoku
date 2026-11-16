@@ -29,21 +29,25 @@ public class Board {
 		for (int row = 0; row < getCells().length; row++) {
 			for (int column = 0; column < getCells()[row].length; column++) {
 				if (!getCells()[row][column].isSolved()) {
-					for (int solution = 1; solution < 10; solution++) {
-						if (!isValueAlreadyUsed(row, column, solution)) {
-							getCells()[row][column].setValue(solution);
-							if (solve()) {
-								return true;
-							}
-						} else {
-							getCells()[row][column].setValue(0);
-						}
-					}
-					return false;
+					return solveCell(row, column);
 				}
 			}
 		}
 		return true;
+	}
+
+	private boolean solveCell(int row, int column) {
+		for (int solution = 1; solution < 10; solution++) {
+			if (isValueAlreadyUsed(row, column, solution)) {
+				getCells()[row][column].setValue(0);
+			} else {
+				getCells()[row][column].setValue(solution);
+				if (solve()) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public Cell[][] getCells() {
