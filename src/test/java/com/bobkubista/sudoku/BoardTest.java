@@ -68,11 +68,17 @@ class BoardTest {
 
 	@Test
 	void testToString() {
-		Assertions
-				.assertEquals(
-						"Board [cells=\n" + "0,0,0,0,0,0,0,0,0\n" + "0,0,0,0,0,0,0,0,0\n" + "0,0,0,0,0,0,0,0,0\n"
-								+ "0,0,3,0,0,0,0,0,0\n" + "0,0,0,0,0,0,0,0,0\n" + "0,0,0,0,0,0,0,0,0\n"
-								+ "0,0,0,0,0,0,0,0,0\n" + "0,0,0,0,0,0,0,0,0\n" + "0,0,0,0,0,0,0,0,0]",
-						Board.initBoard(singleValueBoard).toString());
+		String expected = """
+				Board [cells=
+				0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0
+				0,0,3,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0
+				0,0,0,0,0,0,0,0,0]""";
+		Assertions.assertEquals(expected, Board.initBoard(singleValueBoard).toString());
 	}
 }
